@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 // import { isEmail } from 'validator';
-// const isEmail = require('validator').isEmail
-const validator = require('validator');
-
-
+const {isEmail} = require('validator')
+// const validator = require('validator');
+const bcrypt = require("bcrypt");
 
  const userSchema = new mongoose.Schema({
     username:{
@@ -16,12 +15,12 @@ const validator = require('validator');
         required: [true, 'email should be provided'],
         unique: true,
         lowercase: true,
-        // validate: [isEmail, 'is invalid']
-        validate:{
-            validator: validator.isEmail,
-            message: '{VALUE} is not a valid email',
-            isAsync: false
-          }
+        validate: [isEmail, 'email is invalid']
+        // validate:{
+        //     validator: validator.isEmail,
+        //     message: '{VALUE} is not a valid email',
+        //     isAsync: false
+        //   }
     },
     password: {
         type: String,
@@ -29,6 +28,22 @@ const validator = require('validator');
         minlength: [6, 'pass should contain 6 or more characters']
     }
 });
+
+userSchema.pre('save', async function save(next) {
+    if (!this.isModified('password')) return next();
+    try {
+      const salt = await bcrypt.genSalt(10);
+      this.password = await bcrypt.hash(this.password, salt);
+      return next();
+    } catch (err) {
+      return next(err);
+    }
+  });
+  
+  userSchema.methods.validatePassword = async function validatePassword(data) {
+    return bcrypt.compare(data, this.password);
+  };
+  
 
 const User = mongoose.model('User', userSchema);
 

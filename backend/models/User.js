@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// import { isEmail } from 'validator';
 const {isEmail} = require('validator')
 // const validator = require('validator');
 const bcrypt = require("bcrypt");

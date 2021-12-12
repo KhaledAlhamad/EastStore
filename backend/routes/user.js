@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { generateAccessToken } = require('../auth/auth');
-
+const { generateAccessToken } = require("../auth/auth");
 
 const User = require("../models/User").User;
 
@@ -20,23 +19,16 @@ router.post("/signup", async (req, res) => {
     password,
   });
 
-  if(user){
+  if (user) {
     res.status(201).json({
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-    })
-   }else{
-        res.status(400)
-        throw new Error('Invalid user data')
-   }
-});
-
-// get all users
-router.get("/", (req, res) => {
-  User.find({}, (err, users) => {
-    res.send(users);
-  });
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
 });
 
 // login user
@@ -45,14 +37,22 @@ router.post("/login", async (req, res) => {
   const exist = await User.findOne({ email });
 
   if (exist) {
-    const compare = await bcrypt.compare(password, exist.password);
+    // const compare = await bcrypt.compare(password, exist.password);
+    const compare = await exist.validatePassword(password)
     const generatedToken = await generateAccessToken(`${exist._id}`);
-    compare ? res.json({token: generatedToken}) : res.status(400).send("please check password");
+    compare
+      ? res.json({ token: generatedToken })
+      : res.status(400).send("please check password");
   } else {
     res.status(400).send("Please check email");
   }
 });
 
-
+// get all users
+router.get("/", (req, res) => {
+  User.find({}, (err, users) => {
+    res.send(users);
+  });
+});
 
 module.exports = router;

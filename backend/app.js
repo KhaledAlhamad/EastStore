@@ -15,9 +15,10 @@ main().catch((err) => console.log(err));
 
 const User = require("./routes/user");
 const Product = require("./routes/product");
+const Order = require("./routes/order")
 app.use("/user", User);
 app.use("/product", Product);
-
+app.use("/order", Order)
 
 app.listen(PORT, (err) =>{
     if(err) console.log("ERROR" + err)

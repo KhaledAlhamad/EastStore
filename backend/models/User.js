@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const {isEmail} = require('validator')
 // const validator = require('validator');
 const bcrypt = require("bcrypt");
+const Product = require("./Product").Product
 
  const userSchema = new mongoose.Schema({
     username:{
@@ -15,17 +16,22 @@ const bcrypt = require("bcrypt");
         unique: true,
         lowercase: true,
         validate: [isEmail, 'email is invalid']
-        // validate:{
-        //     validator: validator.isEmail,
-        //     message: '{VALUE} is not a valid email',
-        //     isAsync: false
-        //   }
     },
     password: {
         type: String,
         required: [true, 'password should be provided'],
         minlength: [6, 'pass should contain 6 or more characters']
+    },
+    isAdmin:{
+        type : Boolean,
+        required : true,
+        default : false
     }
+    // cart: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     // required: true,
+    //     ref : 'Product' //relation betwen the review and the user
+    // }
 });
 
 userSchema.pre('save', async function save(next) {

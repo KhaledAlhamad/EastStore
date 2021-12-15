@@ -5,9 +5,33 @@ const Product = require('../models/Product').Product;
 
 // get all products 
 router.get('/', async (req,res) => {
-    const product = await Product.find({})
+    Product.find({} , (err,products) => {
+      if(products.length){
+        res.status(200).send(products)
+      } else{
+        res.status(400).send("No products available")
+      }  
+    });
+})
 
-    product ? res.status(200).send(product) : res.status(400).send("No products available") 
+//get specific product
+router.get('/:id', async (req,res) => {
+  const id = req.params.id;
+  Product.find({} , (err,products) => {
+    if(products.length){
+      Product.find({_id : id} , (err,products) => {
+        if(products){
+          res.status(200).send(products)
+        } else{
+          res.status(400).send("Product NOT found")
+        }  
+      });
+    } else{
+      res.status(400).send("No products available")
+    }  
+  });
+
+  
 })
 
 //Add product
@@ -32,15 +56,15 @@ router.post('/', async (req,res) => {
     // res.send(product)
 })
 
-//Delete product
+//Delete spesific product
 router.delete('/:id', async (req,res) => {
-    const deleteProduct = await Product.findById(req.params.id);
-    console.log(deleteProduct)
-    if(deleteProduct){
-        await deleteProduct.remove();
+    Product.findOneAndDelete({_id : req.params.id} , async (err,product) => {
+      if(product){
         res.status(200).send({ status: "success", message: "Product Deleted Successfully" })
-    } 
-    res.status(400).send('Couldn NOT delete product');
+      } else{
+        res.status(400).send("Couldn NOT delete product")
+      }  
+    });
 })
 
 //update product
@@ -63,11 +87,9 @@ router.put('/:name', (req,res) => {
       Products.modifiedCount == 0
         ? res.status(400).send("Product NOT found")
         : res.status(200).send("Product updated");
-      // console.log("updated Book", Books);
-      // res.send("Book updated");
-      // mongoose.connection.close();
     }
   );
 })
+
 
 module.exports = router;

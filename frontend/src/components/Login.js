@@ -216,7 +216,7 @@ const Login = () => {
             <div className="content">
               <h3>You don't have an account?</h3>
               <p>Create your account right now to follow people and like publications</p>
-              <button className="btn transparent" id="sign-up-btn">Register</button>
+              <button className="btn transparent" id="sign-up-btn" ><Link to='/signup' style={{color: 'white'}}>Signup</Link></button>
             </div>
             <img src="img/log.svg" className="image" alt="" />
           </div>

@@ -43,7 +43,7 @@ const Home = () => {
         // navigate(`/cart`,  {state: product} )
         axios.post('http://localhost:8080/order', {
             userId: uid,
-            productId: product
+            product: [product]
         }).then((res) => {
             console.log(res)
         })
@@ -259,7 +259,7 @@ const Home = () => {
                       Sample text. Click to select the text box. Click again or
                       double click to start editing the text.
                     </p>
-                    <button className="btn btn-success" onClick={() => addToCart(products[0]._id)}>buy</button>
+                    <button className="btn btn-success" onClick={() => addToCart(products[0])}>buy</button>
                   </div>
                 </div>
                 <div className="u-container-style u-list-item u-repeater-item">
@@ -274,7 +274,7 @@ const Home = () => {
                       Sample text. Click to select the text box. Click again or
                       double click to start editing the text.
                     </p>
-                    <button className="btn btn-success" onClick={() => addToCart(products[1]._id)}>buy</button>
+                    <button className="btn btn-success" onClick={() => addToCart(products[1])}>buy</button>
 
                   </div>
                 </div>

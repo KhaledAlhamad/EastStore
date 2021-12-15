@@ -4,10 +4,12 @@ import { useState } from 'react'
 
 const LogContext = ({children}) => {
     const [user, setUser] = useState(null)
+    // const [uid, setUid] = useState(null)
     
         useEffect(() => {
             if(localStorage.getItem("token")){
-            setUser({username:localStorage.getItem('username')})
+            setUser({username:localStorage.getItem('username') , uid:localStorage.getItem('id')})
+            // setUid({id:localStorage.getItem('id')})
             }
         },[])
     

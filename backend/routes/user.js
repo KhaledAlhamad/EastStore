@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
     const compare = await exist.validatePassword(password);
     const generatedToken = await generateAccessToken(`${exist._id}`);
     compare
-      ? res.json({ token: generatedToken, username: exist.username })
+      ? res.json({ token: generatedToken, username: exist.username , id: exist._id })
       : res.status(400).send("please check password");
   } else {
     res.status(400).send("Please check email");

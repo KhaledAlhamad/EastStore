@@ -6,6 +6,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { UserContext } from "./logContext";
 
 const override = css`
   display: block;
@@ -16,9 +18,12 @@ const override = css`
 
 const Home = () => {
   const token = localStorage.getItem("username");
+  const uid = localStorage.getItem("uid");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const {user, setUser }= useContext(UserContext)
+
 
 
 
@@ -27,13 +32,22 @@ const Home = () => {
     axios.get("http://localhost:8080/product").then((res) => {
       setProducts(res.data);
       setLoading(false);
-      // console.log(res.data);
+      console.log(res.data);
     });
   }, []);
 
   const addToCart = (product) => {
       if(token){
         console.log(product)
+        // navigate("/cart", {product:product});
+        // navigate(`/cart`,  {state: product} )
+        axios.post('http://localhost:8080/order', {
+            userId: uid,
+            productId: product
+        }).then((res) => {
+            console.log(res)
+        })
+
       }  else{
         Swal.fire({
             icon: "warning",
@@ -252,7 +266,7 @@ const Home = () => {
                   <div className="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
                     <img
                       className="u-image u-image-contain u-image-2"
-                      src="images/Superstar_Shoes_White_H00186_01_standard.png"
+                      src={products[1].image}
                       data-image-width={840}
                       data-image-height={840}
                     />
@@ -260,6 +274,8 @@ const Home = () => {
                       Sample text. Click to select the text box. Click again or
                       double click to start editing the text.
                     </p>
+                    <button className="btn btn-success" onClick={() => addToCart(products[1]._id)}>buy</button>
+
                   </div>
                 </div>
                 <div className="u-container-style u-list-item u-repeater-item">

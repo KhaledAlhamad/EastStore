@@ -56,7 +56,7 @@ router.post('/', async (req,res) => {
     // res.send(product)
 })
 
-//Delete spesific product
+//Delete specific product
 router.delete('/:id', async (req,res) => {
     Product.findOneAndDelete({_id : req.params.id} , async (err,product) => {
       if(product){

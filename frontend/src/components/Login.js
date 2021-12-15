@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
+  const uid = localStorage.getItem("uid");
   const [logged, setLogged] = useState(false)
   const {user, setUser }= useContext(UserContext)
 
@@ -39,6 +40,7 @@ const Login = () => {
           console.log("res", res.data);
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("username", res.data.username);
+          localStorage.setItem("uid", res.data.id);
           setUser(res.data)
           Swal.fire({
             icon: "success",

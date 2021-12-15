@@ -6,12 +6,19 @@ const mongoose = require('mongoose');
         type: String,
         required: [true, 'product name should be provided'],
     },
+    image:{
+        type: String,
+        required: [true, 'product image should be provided'],
+    },
     quantity: {
         type: Number,
         required: [true, 'quantity should be provided'],
     },
     category: {
         type: String
+    },
+    color: {
+       type: String
     }
 });
 

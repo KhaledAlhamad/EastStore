@@ -33,15 +33,15 @@ router.post("/signup", async (req, res) => {
 
 // login user
 router.post("/login", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   const exist = await User.findOne({ email });
 
   if (exist) {
     // const compare = await bcrypt.compare(password, exist.password);
-    const compare = await exist.validatePassword(password)
+    const compare = await exist.validatePassword(password);
     const generatedToken = await generateAccessToken(`${exist._id}`);
     compare
-      ? res.json({ token: generatedToken })
+      ? res.json({ token: generatedToken, username: exist.username })
       : res.status(400).send("please check password");
   } else {
     res.status(400).send("Please check email");
@@ -53,6 +53,24 @@ router.get("/", (req, res) => {
   User.find({}, (err, users) => {
     res.send(users);
   });
+});
+
+//delete user
+router.delete("/:username", (req, res) => {
+  const username = req.params.username;
+
+  User.deleteOne(
+    { username: { $regex: new RegExp(username, "i") } },
+    (err, users) => {
+      if (err) {
+        res.status(200).send("Could NOT delete user");
+      }
+      User.find({}, (err, Users) => {
+        res.status(200).send(Users);
+        console.log("All Users", Users);
+      });
+    }
+  );
 });
 
 module.exports = router;

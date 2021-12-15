@@ -1,0 +1,383 @@
+.u-section-1 {
+    min-height: 100vh;
+  }
+  
+  .u-section-1 .u-layout-wrap-1 {
+    width: calc(((100% - 1140px) / 2) + 1140px);
+    margin: 0 0 0 auto;
+  }
+  
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 638px;
+  }
+  
+  .u-section-1 .u-container-layout-1 {
+    padding: 30px;
+  }
+  
+  .u-section-1 .u-text-1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin: 0 0 0 auto;
+  }
+  
+  .u-section-1 .u-text-2 {
+    font-weight: 900;
+    font-size: 12.5rem;
+    line-height: 0.8;
+    margin: 20px 0 0 auto;
+  }
+  
+  .u-section-1 .u-text-3 {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 900;
+    font-size: 3rem;
+    margin: 0 0 0 auto;
+  }
+  
+  .u-section-1 .u-text-4 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 20px 0 0 auto;
+  }
+  
+  .u-section-1 .u-btn-1 {
+    background-image: none;
+    border-style: none none solid;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 20px 0 0 auto;
+    padding: 0;
+  }
+  
+  .u-section-1 .u-image-1 {
+    min-height: 638px;
+    background-image: url("./billionphotos-916045.png");
+    background-position: 0% 100%;
+  }
+  
+  .u-section-1 .u-container-layout-2 {
+    padding: 0 30px 0 0;
+  }
+  
+  @media (max-width: 1199px) {
+     .u-section-1 {
+      min-height: 638px;
+    }
+  
+    .u-section-1 .u-layout-wrap-1 {
+      width: calc(((100% - 940px) / 2) + 940px);
+    }
+  }
+  
+  @media (max-width: 991px) {
+     .u-section-1 {
+      min-height: 420px;
+    }
+  
+    .u-section-1 .u-layout-wrap-1 {
+      width: calc(((100% - 720px) / 2) + 720px);
+    }
+  
+    .u-section-1 .u-layout-cell-1 {
+      min-height: 100px;
+    }
+  
+    .u-section-1 .u-text-3 {
+      margin-top: 20px;
+    }
+  
+    .u-section-1 .u-image-1 {
+      min-height: 529px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+     .u-section-1 {
+      min-height: 1612px;
+    }
+  
+    .u-section-1 .u-layout-wrap-1 {
+      width: calc(((100% - 540px) / 2) + 540px);
+    }
+  
+    .u-section-1 .u-container-layout-1 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    .u-section-1 .u-image-1 {
+      min-height: 794px;
+    }
+  
+    .u-section-1 .u-container-layout-2 {
+      padding-right: 10px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-layout-wrap-1 {
+      width: calc(((100% - 340px) / 2) + 340px);
+    }
+  
+    .u-section-1 .u-image-1 {
+      min-height: 500px;
+      background-position: 0% 50%;
+    }
+  } .u-section-2 {
+    min-height: 318px;
+  }
+  
+  .u-section-2 .u-sheet-1 {
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  
+  .u-section-2 .u-layout-wrap-1 {
+    margin-top: 0;
+    margin-bottom: 17px;
+  }
+  
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 775px;
+  }
+  
+  .u-section-2 .u-container-layout-1 {
+    padding: 30px 60px;
+  }
+  
+  .u-section-2 .u-icon-1 {
+    height: 48px;
+    width: 48px;
+    background-image: none;
+    margin: 60px auto 0;
+  }
+  
+  .u-section-2 .u-text-1 {
+    margin: 31px auto 0;
+  }
+  
+  .u-section-2 .u-text-2 {
+    margin: 19px 0 0;
+  }
+  
+  .u-section-2 .u-btn-1 {
+    border-style: none none solid;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    margin: 20px auto 0;
+    padding: 0;
+  }
+  
+  .u-section-2 .u-btn-2 {
+    border-style: solid;
+    background-image: none;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 20px auto 0;
+    padding: 16px 61px 16px 60px;
+  }
+  
+  .u-section-2 .u-image-1 {
+    min-height: 775px;
+    background-image: url("./most-sought-after-men-sneakers-adidas-yeezy-luxe-digital@2x.png");
+    background-position: 50% 50%;
+  }
+  
+  .u-section-2 .u-container-layout-2 {
+    padding: 30px 60px;
+  }
+  
+  @media (max-width: 1199px) {
+    .u-section-2 .u-sheet-1 {
+      min-height: 89px;
+    }
+  
+    .u-section-2 .u-layout-cell-1 {
+      min-height: 639px;
+    }
+  
+    .u-section-2 .u-image-1 {
+      min-height: 639px;
+    }
+  }
+  
+  @media (max-width: 991px) {
+     .u-section-2 {
+      min-height: 66px;
+    }
+  
+    .u-section-2 .u-layout-cell-1 {
+      min-height: 100px;
+    }
+  
+    .u-section-2 .u-container-layout-1 {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  
+    .u-section-2 .u-image-1 {
+      min-height: 489px;
+    }
+  
+    .u-section-2 .u-container-layout-2 {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-2 .u-container-layout-1 {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  
+    .u-section-2 .u-image-1 {
+      min-height: 734px;
+    }
+  
+    .u-section-2 .u-container-layout-2 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-2 .u-image-1 {
+      min-height: 462px;
+    }
+  }.u-section-3 .u-sheet-1 {
+    min-height: 798px;
+  }
+  
+  .u-section-3 .u-text-1 {
+    font-weight: 700;
+    font-size: 6rem;
+    margin: 60px auto 0;
+  }
+  
+  .u-section-3 .u-text-2 {
+    margin: 50px auto 0;
+  }
+  
+  .u-section-3 .u-list-1 {
+    margin: 30px auto 0 0;
+  }
+  
+  .u-section-3 .u-repeater-1 {
+    grid-template-columns: repeat(3, calc(33.3333% - 6.66667px));
+    min-height: 432px;
+    grid-gap: 10px;
+  }
+  
+  .u-section-3 .u-container-layout-1 {
+    padding: 30px;
+  }
+  
+  .u-section-3 .u-image-1 {
+    object-position: 51.06% 50%;
+    width: 313px;
+    height: 372px;
+    margin: 0 auto 0 0;
+  }
+  
+  .u-section-3 .u-text-3 {
+    margin-left: 0;
+    font-size: 0.875rem;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  
+  .u-section-3 .u-container-layout-2 {
+    padding: 30px;
+  }
+  
+  .u-section-3 .u-image-2 {
+    object-position: 55.26% 50%;
+    width: 313px;
+    height: 372px;
+    margin: 0 auto 0 0;
+  }
+  
+  .u-section-3 .u-text-4 {
+    margin-left: 0;
+    font-size: 0.875rem;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  
+  .u-section-3 .u-container-layout-3 {
+    padding: 30px;
+  }
+  
+  .u-section-3 .u-image-3 {
+    object-position: 100% 100%;
+    width: 313px;
+    height: 372px;
+    margin: 0 auto 0 0;
+  }
+  
+  .u-section-3 .u-text-5 {
+    margin-left: 0;
+    font-size: 0.875rem;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  
+  .u-section-3 .u-btn-1 {
+    border-style: solid;
+    background-image: none;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 30px auto 60px;
+    padding: 16px 61px 16px 60px;
+  }
+  
+  @media (max-width: 1199px) {
+    .u-section-3 .u-sheet-1 {
+      min-height: 722px;
+    }
+  
+    .u-section-3 .u-list-1 {
+      height: auto;
+      margin-right: initial;
+      margin-left: initial;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .u-section-3 .u-repeater-1 {
+      grid-template-columns: repeat(2, calc(50% - 5px));
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-3 .u-repeater-1 {
+      grid-template-columns: repeat(1, 100%);
+    }
+  
+    .u-section-3 .u-container-layout-1 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    .u-section-3 .u-container-layout-2 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    .u-section-3 .u-container-layout-3 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-3 .u-text-1 {
+      font-size: 3.75rem;
+    }
+  }
+  

@@ -41,7 +41,7 @@ const Home = () => {
         console.log(product)
         // navigate("/cart", {product:product});
         // navigate(`/cart`,  {state: product} )
-        axios.post('http://localhost:8080/order', {
+        axios.post('http://localhost:8080/cart', {
             userId: uid,
             product: [product]
         }).then((res) => {

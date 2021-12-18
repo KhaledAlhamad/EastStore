@@ -2,6 +2,7 @@ import "./App.css";
 import "./style.css"
 import "./login.css"
 import "./Home.css"
+import "./Cart.css"
 import {
   BrowserRouter as Router,
   Route,

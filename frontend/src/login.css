@@ -68,7 +68,7 @@
   }
   
   .container:before {
-    content: "";
+    /* content: "";
     position: absolute;
     width: 2000px;
     height: 2000px;
@@ -78,7 +78,7 @@
     right: 48%;
     transform: translateY(-50%);
     z-index: 6;
-    transition: 1.8s ease-in-out;
+    transition: 1.8s ease-in-out; */
   }
   
   .forms-container {

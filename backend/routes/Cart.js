@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const Order = require("../models/order").Order;
+const Cart = require("../models/Cart").Cart;
 const Product = require("../models/Product").Product;
 const User = require("../models/User").User;
 
-//get user orders
+//get user cart
 router.get("/:id", async (req, res) => {
-  Order.find({ userId: req.params.id }, (err, orders) => {
-    res.send(orders);
+  Cart.find({ userId: req.params.id }, (err, cart) => {
+    res.send(cart);
   });
 });
 
@@ -16,15 +16,15 @@ router.get("/:id", async (req, res) => {
 router.post("/", (req, res) => {
   const { userId, product } = req.body;
   // const uid = req.body.userId;
-  Order.find({ userId: userId }, (err, users) => {
+  Cart.find({ userId: userId }, (err, users) => {
     if (users.length) {
-        Order.updateOne({ userId: userId}, { $push: { product: { $each: product } } } , (err, orders) => {
-            orders ? res.status(200).send({ status: "exist", message: "Product added Successfully" }) : res.send("Error");
+        Cart.updateOne({ userId: userId}, { $push: { product: { $each: product } } } , (err, cart) => {
+            cart ? res.status(200).send({ status: "exist", message: "Product added Successfully" }) : res.send("Error");
           });
         // res.send("Exist")
     } else {
-        Order.create({ userId: userId, product: product }, (err, orders) => {
-            orders ? res.status(200).send({ status: "new", message: "Product added Successfully" }) : res.send("Error");
+        Cart.create({ userId: userId, product: product }, (err, cart) => {
+            cart ? res.status(200).send({ status: "new", message: "Product added Successfully" }) : res.send("Error");
           });
     // res.send("NOT")
     }
@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
 
 router.delete("/", (req, res) => {
   const { userId, productId } = req.body;
-  Order.findOneAndDelete({ userId, productId }, async (err, product) => {
+  Cart.findOneAndDelete({ userId, productId }, async (err, product) => {
     if (product) {
       res
         .status(200)

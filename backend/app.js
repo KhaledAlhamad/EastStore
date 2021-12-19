@@ -16,9 +16,12 @@ main().catch((err) => console.log(err));
 const User = require("./routes/user");
 const Product = require("./routes/product");
 const Cart = require("./routes/cart")
+const Auth = require("./routes/auth")
+
 app.use("/user", User);
 app.use("/product", Product);
 app.use("/cart", Cart)
+app.use("/auth", Auth)
 
 app.listen(PORT, (err) =>{
     if(err) console.log("ERROR" + err)

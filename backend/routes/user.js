@@ -1,66 +1,58 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { generateAccessToken } = require("../auth/auth");
+const { generateAccessToken, verifyAccess, verifyAndAuthorize ,verifyAdmin} = require("../auth/auth");
 
 const User = require("../models/User").User;
 
-// Register new user
-router.post("/signup", async (req, res) => {
-  const { username, email, password } = req.body;
-  const exist = await User.findOne({ email });
-
-  if (exist) {
-    res.status(400).send("User already exist");
-  }
-  const user = await User.create({
-    username,
-    email,
-    password,
-  });
-
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-    });
-  } else {
-    res.status(400);
-    throw new Error("Invalid user data");
-  }
-});
-
-// login user
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const exist = await User.findOne({ email });
-
-  if (exist) {
-    // const compare = await bcrypt.compare(password, exist.password);
-    const compare = await exist.validatePassword(password);
-    const generatedToken = await generateAccessToken(`${exist._id}`);
-    compare
-      ? res.json({ token: generatedToken, username: exist.username , id: exist._id })
-      : res.status(400).send("please check password");
-  } else {
-    res.status(400).send("Please check email");
-  }
-});
-
 // get all users
-router.get("/", (req, res) => {
-  User.find({}, (err, users) => {
-    res.send(users);
-  });
+router.get("/",verifyAdmin, async (req, res) => {
+  try{
+    User.find({}, (err, users) => {
+      res.send(users);
+    });
+  }
+  catch{
+    res.status(500).send("error")
+  }
+ 
 });
+
+//GET specific user
+router.get("/find/:id", verifyAdmin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//update user
+router.put("/:id", verifyAndAuthorize, async (req, res) => {
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 //delete user
-router.delete("/:username", (req, res) => {
-  const username = req.params.username;
+router.delete("/:id", verifyAndAuthorize, async (req, res) => {
+  const id = req.params.id;
 
   User.deleteOne(
-    { username: { $regex: new RegExp(username, "i") } },
+    { _id : id },
     (err, users) => {
       if (err) {
         res.status(200).send("Could NOT delete user");
@@ -72,5 +64,6 @@ router.delete("/:username", (req, res) => {
     }
   );
 });
+
 
 module.exports = router;

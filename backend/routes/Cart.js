@@ -1,71 +1,75 @@
 const express = require("express");
 const router = express.Router();
+const {
+  generateAccessToken,
+  verifyAccess,
+  verifyAndAuthorize,
+  verifyAdmin,
+} = require("../auth/auth");
 
 const Cart = require("../models/Cart").Cart;
 const Product = require("../models/Product").Product;
 const User = require("../models/User").User;
 
+//CREATE
+
+router.post("/", verifyAccess, async (req, res) => {
+  const newCart = new Cart(req.body);
+
+  try {
+    const savedCart = await newCart.save();
+    res.status(200).json(savedCart);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//UPDATE
+router.put("/:id", verifyAccess, async (req, res) => {
+  try {
+    const updatedCart = await Cart.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedCart);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//DELETE
+router.delete("/:id", verifyAccess, async (req, res) => {
+  try {
+    await Cart.findByIdAndDelete(req.params.id);
+    res
+      .status(200)
+      .send({ status: "success", message: "Product Deleted Successfully" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //get user cart
-router.get("/:id", async (req, res) => {
-  Cart.find({ userId: req.params.id }, (err, cart) => {
-    res.send(cart);
-  });
+router.get("/:id", verifyAccess, async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.id });
+    res.status(200).json(cart);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-// add product
-router.post("/", (req, res) => {
-  const { userId, product } = req.body;
-  // const uid = req.body.userId;
-  Cart.find({ userId: userId }, (err, users) => {
-    if (users.length) {
-        Cart.updateOne({ userId: userId}, { $push: { product: { $each: product } } } , (err, cart) => {
-            cart ? res.status(200).send({ status: "exist", message: "Product added Successfully" }) : res.send("Error");
-          });
-        // res.send("Exist")
-    } else {
-        Cart.create({ userId: userId, product: product }, (err, cart) => {
-            cart ? res.status(200).send({ status: "new", message: "Product added Successfully" }) : res.send("Error");
-          });
-    // res.send("NOT")
-    }
-  });
-
-  // console.log(uid)
+// //GET ALL
+router.get("/", verifyAdmin, async (req, res) => {
+  try {
+    const carts = await Cart.find();
+    res.status(200).json(carts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.delete("/", (req, res) => {
-  const { userId, productId } = req.body;
-  // Cart.findOneAndDelete({ userId, productId }, async (err, product) => {
-  //   if (product) {
-  //     res
-  //       .status(200)
-  //       .send({ status: "success", message: "Product Deleted Successfully" });
-  //   } else {
-  //     res.status(400).send("Couldn NOT delete product");
-  //   }
-  // });
-
-
-//   Cart.update({ userId: userId }, { "$pull": { "product": { "_id": productId } }}, { safe: true, multi:true }, function(err, obj) {
-//     //do something smart
-//     res.send(obj);
-// });
-
- Cart.updateOne({ userId: userId }, { "$pull": { "product": { "_id": productId } }}, (err,cart) =>{
-    //do something smart
-    res.send(cart);
-});
-
-  // Cart.find({ userId: userId }, (err, cart) => {
-  //   cart[0].product = cart[0].product.filter((product) => product._id != req.body.productId);
-  //   // cart.save(() => res.end());
-  //   res.send(cart);
-  // });    
-  // Cart.findById(req.body.userId)
-  //   .then((foundCart) => {
-      // foundCart.product = foundCart.product.filter((item) => item._id != req.body.productId);
-      // foundCart.save(() => res.end());
-  //     console.log(foundCart)
-  //   });
-});
 module.exports = router;

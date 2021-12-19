@@ -27,13 +27,15 @@ router.get("/:id", async (req, res) => {
   });
 });
 
-// get all products
-router.get("/", async (req, res) => {
-  Product.find({}, (err, products) => {
-    if (products.length) {
-      res.status(200).send(products);
+//Delete specific product
+router.delete("/:id", verifyAdmin, async (req, res) => {
+  Product.findOneAndDelete({ _id: req.params.id }, async (err, product) => {
+    if (product) {
+      res
+        .status(200)
+        .send({ status: "success", message: "Product Deleted Successfully" });
     } else {
-      res.status(400).send("No products available");
+      res.status(400).send("Couldn NOT delete product");
     }
   });
 });
@@ -66,17 +68,30 @@ router.put("/:id", verifyAdmin, async (req, res) => {
   }
 });
 
-//Delete specific product
-router.delete("/:id", verifyAdmin, async (req, res) => {
-  Product.findOneAndDelete({ _id: req.params.id }, async (err, product) => {
-    if (product) {
-      res
-        .status(200)
-        .send({ status: "success", message: "Product Deleted Successfully" });
-    } else {
-      res.status(400).send("Couldn NOT delete product");
-    }
-  });
-});
 
+
+//GET all products
+router.get("/", async (req, res) => {
+  const latest = req.query.latest;
+  const cat = req.query.category;
+  try {
+    let products;
+
+    if (latest) {
+      products = await Product.find().sort({ createdAt: -1 }).limit(1);
+    } else if (cat) {
+      products = await Product.find({
+        category: {
+          $in: [cat],
+        },
+      });
+    } else {
+      products = await Product.find();
+    }
+
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;

@@ -16,6 +16,7 @@ import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/contact" element={<Contact />}></Route>
           <Route exact path="/profile" element={<Profile/>}></Route>
           <Route exact path="/cart" element={<Cart/>}></Route>
+          <Route exact path="/payment" element={<Payment/>}></Route>
         </Routes>
       </Router>
     </div>

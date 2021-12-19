@@ -18,7 +18,7 @@ router.get('/', async (req,res) => {
 router.get('/:id', async (req,res) => {
   const id = req.params.id;
   Product.find({} , (err,products) => {
-    if(products.length){
+    if(products){
       Product.find({_id : id} , (err,products) => {
         if(products){
           res.status(200).send(products)

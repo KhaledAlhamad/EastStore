@@ -5,17 +5,17 @@ const mongoose = require('mongoose');
     name:{
         type: String,
         required: [true, 'product name should be provided'],
+        unique: true
     },
     image:{
         type: String,
         required: [true, 'product image should be provided'],
     },
-    quantity: {
-        type: Number,
-        required: [true, 'quantity should be provided'],
+    size: {
+        type: String,
     },
     category: {
-        type: String
+        type: Array
     },
     color: {
        type: String
@@ -28,7 +28,9 @@ const mongoose = require('mongoose');
     description:{
         type : String,
     }
-});
+},
+{timestamps:true}
+);
 
 const Product = mongoose.model('Product', productSchema);
 

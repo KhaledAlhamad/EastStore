@@ -40,6 +40,11 @@ const Header = () => {
                 </Link>{" "}
               </li>
               <li className="nav-item">
+                <Link className="nav-link active" to="/cart">
+                  Cart
+                </Link>{" "}
+              </li>
+              <li className="nav-item">
                {user ? <Link className="nav-link active" to="/profile">
                   {user.username}
                 </Link> : <Link className="nav-link active" to="/login">

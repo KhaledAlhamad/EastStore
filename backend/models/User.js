@@ -32,7 +32,10 @@ const Product = require("./Product").Product
     //     // required: true,
     //     ref : 'Product' //relation betwen the review and the user
     // }
-});
+},
+{timestamps: true}
+
+);
 
 userSchema.pre('save', async function save(next) {
     if (!this.isModified('password')) return next();

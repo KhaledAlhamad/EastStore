@@ -36,11 +36,11 @@ router.post("/signup", async (req, res) => {
         if(!compare){
             res.status(401).send("Wrong Password!")
         }
-        const generatedToken = await generateAccessToken(user);
+        const token = await generateAccessToken(user);
   
         const { password, ...rest } = user._doc;  
-        // res.status(200).json({generatedToken});
-        res.status(200).json({...rest, generatedToken});
+        // res.status(200).json({Token});
+        res.status(200).json({...rest, token});
         // console.log(user);
 
     }catch(err){

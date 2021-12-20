@@ -12,13 +12,13 @@ const mongoose = require('mongoose');
         required: [true, 'product image should be provided'],
     },
     size: {
-        type: String,
+        type: Array,
     },
     category: {
         type: Array
     },
     color: {
-       type: String
+       type: Array
     },
     price: {
         type : Number,
@@ -27,7 +27,8 @@ const mongoose = require('mongoose');
     },
     description:{
         type : String,
-    }
+    },
+    inStock:{type:Boolean}
 },
 {timestamps:true}
 );

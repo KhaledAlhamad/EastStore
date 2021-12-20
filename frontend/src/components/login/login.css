@@ -1,0 +1,45 @@
+.Container{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+      url("https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png")
+        center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.Title {
+    font-size: 24px;
+    font-weight: 300;
+    color: black;
+  }
+  
+  /* .Form{
+    display: flex;
+    flex-wrap: wrap;
+  } */
+  
+  .Input {
+    flex: 1;
+    min-width: 40%;
+    margin: 20px 10px 0px 0px;
+    padding: 10px;
+  }
+  
+  .Button {
+    width: 40%;
+    border: none;
+    padding: 15px 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+  

@@ -119,16 +119,14 @@ const Product = () => {
       <Container>
         <Wrapper>
           <ImgContainer>
-            <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+            <Image src="https://media.6media.me/media/catalog/product/1/9/193642988680-2.jpg" />
           </ImgContainer>
           <InfoContainer>
-            <Title>Denim Jumpsuit</Title>
+            <Title>Skechers</Title>
             <Desc>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-              iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-              tristique tortor pretium ut. Curabitur elit justo, consequat id
-              condimentum ac, volutpat ornare.
+            Aline Roads Lace Up Shoes - White
+
+
             </Desc>
             <Price>$ 20</Price>
             <FilterContainer>

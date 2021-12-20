@@ -79,11 +79,14 @@ const Header = () => {
       <Container>
       <Wrapper>
         <Left>
-          <Logo>East Store</Logo>
+          <Logo><Link to='/'><img src="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png" width="50" alt="running icon transparent running images vector" /></Link></Logo>
         </Left>
         <Right>
-          <MenuItem>SIGN UP</MenuItem>
-          <MenuItem>LOG IN</MenuItem>
+        <Link to="/products" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>SHOP</MenuItem></Link>
+
+        {/* <Link to="/signup" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>SIGN UP</MenuItem></Link> */}
+         {user ? <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>{user.username}</MenuItem></Link>  :  <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>LOG IN</MenuItem></Link>
+}
           <MenuItem>
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />

@@ -10,6 +10,8 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
+
 
 const Container = styled.div`
   display: flex;
@@ -89,7 +91,7 @@ const Footer = () => {
     <div>
       <Container>
         <Left>
-          <Logo>East Store</Logo>
+          <Logo><Link to='/'><img src="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png" width="50" alt="running icon transparent running images vector" /></Link></Logo>
           <Desc>
             Your place for shopping the latest shoes.
           </Desc>

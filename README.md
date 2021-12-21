@@ -6,7 +6,7 @@
 
 ## Description
 
-***e-commerce*** an online store for buying different variant of products.
+***e-commerce*** an online store for buying Sport Shoes.
 
 ***dataBASE*** used MongoDB.
 
@@ -18,8 +18,8 @@
 - **Add product to cart** As a user I can add product to cart
 - **remove product from cart** As a user I can remove product from cart
 - **update product quantity** As a user I can update product quantity
+- **Checkout** As a user I can compelete purchase and buy products from the store
 - **View Products** As a user I want to see the products in the store
-- **Edit User** As a user I can edit my profile, add or substract exit points
 
 
 
@@ -34,6 +34,11 @@
 - ProfilePage
 - SignupPage
 - Navbar
+- Footer
+- Catalouge
+- Products
+- Cart
+
 
 
 
@@ -92,6 +97,59 @@ Product model
     }
    
  }
+
+ ```
+
+Cart model
+
+```
+ {
+     userId:{
+        type: String,
+        required:true,
+    },
+    products: [{
+    productId:{
+        type: String
+    },
+    quantity:{
+        type:Number,
+        default:1
+    }
+    }]
+   
+ }
+
+```
+
+Order model
+
+```
+ {
+   userId: {
+      type: String,
+      required: true,
+    },
+    products: [
+      {
+        productId: {
+          type: String,
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+      },
+    ],
+    amount: { type: Number, required: true},
+    address:{type: Object, required: true},
+    status: {type: String, default: "pending"}
+
+   
+ }
+
+```
+
 ```
 
 
@@ -102,7 +160,7 @@ Product model
 | ----------- | -------------- | ------------------------------------------------------------ | -------------- | ------------ | ------------------------------------------------------------ |
 | GET         | `/auth/me`     |                                                              | 200            | 404          | Check if user is logged in and return profile page           |
 | POST        | `/user/signup` | {username, email, password}                                  | 201            | 400          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | `/user/login`  | {email, password}                                            | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| POST        | `/auth/login`  | {email, password}                                            | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
 
 
 ## Links

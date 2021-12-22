@@ -1,7 +1,8 @@
 # ShoeWear	
 
 
-<img url="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png" alt="minilogo" style="zoom:75%;" />
+
+![](https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png)
 
 ## Description
 

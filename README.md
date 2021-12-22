@@ -1,8 +1,7 @@
-# East Store	
+# ShoeWear	
 
-# Quick Compo
 
-<img src="/Users/enriquecoscarelli/Downloads/minilogo.png" alt="minilogo" style="zoom:75%;" />
+<img url="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png" alt="minilogo" style="zoom:75%;" />
 
 ## Description
 

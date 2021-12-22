@@ -1,12 +1,10 @@
 # ShoeWear	
 
 
-
-![](https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png)
-
 ## Description
 
-***e-commerce*** an online store for buying Sport Shoes.
+***e-commerce*** An Online Store for exploring and buying different variants of Sports Shoes 
+.
 
 ## User Stories
 

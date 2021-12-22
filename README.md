@@ -8,8 +8,6 @@
 
 ***e-commerce*** an online store for buying Sport Shoes.
 
-***dataBASE*** used MongoDB.
-
 ## User Stories
 
 - **Signup:** As a user I can sign up in the platform so that I can start playing into competition
@@ -150,7 +148,7 @@ Order model
 
 ```
 
-```
+
 
 
 

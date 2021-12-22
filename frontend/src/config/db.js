@@ -1,0 +1,2 @@
+const STRIPE_KEY = 'sk_test_51K8Kf1IcKij4uKdD6V9hB7a7rFAnrLdqZtHUCM6lzcKmYF8cX1pE3OTk0bMMZEgS6hIiFzyMhwD86bETvRwmmUFO00njCvTRCZ'
+module.exports ={STRIPE_KEY}

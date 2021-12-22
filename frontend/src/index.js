@@ -7,13 +7,15 @@ import LogContext from './components/logContext';
 // import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 // import 'font-awesome/css/font-awesome.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import store from './reducers/store'
+import { Provider } from "react-redux";
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <LogContext><App /></LogContext>
-    
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

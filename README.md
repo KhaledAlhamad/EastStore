@@ -98,7 +98,7 @@ Product model
    
  }
 
- ```
+```
 
 Cart model
 
@@ -159,8 +159,19 @@ Order model
 | HTTP Method | URL            | Request Body                                                 | Success status | Error Status | Description                                                  |
 | ----------- | -------------- | ------------------------------------------------------------ | -------------- | ------------ | ------------------------------------------------------------ |
 | GET         | `/auth/me`     |                                                              | 200            | 404          | Check if user is logged in and return profile page           |
-| POST        | `/user/signup` | {username, email, password}                                  | 201            | 400          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| POST        | `/auth/signup` | {username, email, password}                                  | 201            | 400          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
 | POST        | `/auth/login`  | {email, password}                                            | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| POST        | `/cart`  |                                             | 200            | 401          | Checks user verfied, create new cart, and return cart |
+| GET        | `/cart/:id`  |                                             | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| GET        | `/cart/`  |                                             | 200            | 401          | Checks admin verfied, Checks if carts exists (404), and return all carts |
+| DELETE        | `/cart/:id`  |                                             | 200            | 401          | Checks user verfied, Checks if cart exists (404), and delete cart |
+| PUT        | `/cart/:id`  |                                             | 200            | 401          | Checks user verfied, Checks if cart exists (404), and update cart |
+| GET        | `/product/:id`  |                                             | 200            | 401          | Checks if product exists , and return specific product |
+| GET        | `/product` | {latest, category}                                  | 201            | 400          | Checks if filters are provided; if so, return filtered products, else return all products, then create user with encrypted password, and store user in session |
+| DELETE        | `/product/:id` |                                  | 201            | 400          | Checks admin verfied, Checks if product exists (404), and delete product  |
+| PUT        | `/product/:id` |    {req.body}                               | 201            | 400          | Checks admin verfied, Checks if product exists (404), and update product  |
+| POST        | `/product/` |    {req.body}                               | 201            | 400          | Checks admin verfied, and create new product  |
+
 
 
 ## Links
@@ -168,5 +179,6 @@ Order model
 ### Trello
 
 [Link to your trello board](https://trello.com/b/cPFH5Quv) 
+
 
 

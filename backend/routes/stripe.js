@@ -1,12 +1,13 @@
 const router = require("express").Router()
 const key = require("../config/db").STRIPE_KEY
+const stripe = require("stripe")(key);
 
 router.post("/payment", (req, res) => {
-    key.charges.create(
+  stripe.charges.create(
       {
-        source: req.body.tokenId,
-        amount: req.body.amount,
-        currency: "usd",
+          source: req.body.tokenId,
+          amount: req.body.amount,
+          currency: "usd",
       },
       (stripeErr, stripeRes) => {
         if (stripeErr) {

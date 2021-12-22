@@ -25,6 +25,7 @@ const Signup = () => {
 
   const signUser = () => {
     console.log(password);
+    // e.preventDefault()
     axios
       .post("http://localhost:8080/auth/signup", {
         username: username,
@@ -101,7 +102,6 @@ const Signup = () => {
       {loggedUser ? navigate("../", { replace: true }) : <div className="Container">
         <Wrapper>
           <h1 className="Title">CREATE AN ACCOUNT</h1>
-          <form className="Form">
             
             <input 
             className="Input form-control form-group"
@@ -126,7 +126,6 @@ const Signup = () => {
             <button className="Button" onClick={() => signUser()}>
               CREATE
             </button>
-          </form>
         </Wrapper>
       </div>}
     </div>

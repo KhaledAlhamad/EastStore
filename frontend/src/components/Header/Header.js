@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Badge } from "@material-ui/core"; 
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { mobile } from "../../responsive";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -72,7 +73,7 @@ const MenuItem = styled.div`
 
 const Header = () => {
   const { user } = useContext(UserContext);
-
+  const quantity = useSelector(state=>state.cart.quantity)
 
   return (
     <div>
@@ -88,8 +89,8 @@ const Header = () => {
          {user ? <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>{user.username}</MenuItem></Link>  :  <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>LOG IN</MenuItem></Link>
 }
           <MenuItem>
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
+            <Badge badgeContent={quantity} color="primary">
+            <Link to="/cart" style={{ textDecoration: 'none' , color: 'black'}}> <ShoppingCartOutlined /></Link>
             </Badge>
           </MenuItem>
         </Right>

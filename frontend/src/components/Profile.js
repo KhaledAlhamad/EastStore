@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from './logContext';
 import { useContext } from 'react';
-import user from '../reducers/user/user';
 
 
 const Profile = () => {

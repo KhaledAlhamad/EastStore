@@ -17,11 +17,13 @@ const User = require("./routes/user");
 const Product = require("./routes/product");
 const Cart = require("./routes/cart")
 const Auth = require("./routes/auth")
-
+const Pay = require("./routes/stripe")
 app.use("/user", User);
 app.use("/product", Product);
 app.use("/cart", Cart)
 app.use("/auth", Auth)
+app.use("/checkout", Pay)
+
 
 app.listen(PORT, (err) =>{
     if(err) console.log("ERROR" + err)

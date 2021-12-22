@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import "../Item/Item.css";
+import { Link } from "react-router-dom";
+
 
 import React from "react";
 
@@ -46,11 +48,13 @@ const Button = styled.button`
 const Item = ({ item }) => {
   return (
     <Container>
+        <Link to={`/products/${item.title}`}>
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
         <Button>SHOP NOW</Button>
       </Info>
+      </Link>
     </Container>
   );
 };

@@ -30,17 +30,17 @@ export const sliderItems = [
     {
       id: 1,
       img: "https://media.6media.me/media/catalog/product/cache/e051e343fbed6099e8c148bd11733e32/4/0/4064037656858-1.jpg",
-      title: "ADIDAS",
+      title: "adidas",
     },
     {
       id: 2,
       img: "https://mobilecdn.6thstreet.com/AllBanners/Cat+upload/sports/MicrosoftTeams-image+(15).png",
-      title: "NIKE",
+      title: "nike",
     },
     {
       id: 3,
       img: "https://media.6media.me/media/catalog/product/cache/e051e343fbed6099e8c148bd11733e32/3/6/36521501-wht-blk-760x850.jpg",
-      title: "PUMA",
+      title: "puma",
     },
   ];
 

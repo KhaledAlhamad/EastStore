@@ -1,2 +1,2 @@
-const STRIPE_KEY = 'sk_test_51K8Kf1IcKij4uKdD6V9hB7a7rFAnrLdqZtHUCM6lzcKmYF8cX1pE3OTk0bMMZEgS6hIiFzyMhwD86bETvRwmmUFO00njCvTRCZ'
+const STRIPE_KEY = 'pk_test_51K8Kf1IcKij4uKdDjEc8Jg6Exc1ECRsyLllsejccvpIUf92pzJ9Pw7QAcCQTme8SMLIT2EI3UpPL3YdnxyAGXvFu00Akwq9RjW'
 module.exports ={STRIPE_KEY}

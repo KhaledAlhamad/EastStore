@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useContext } from "react";
@@ -17,6 +17,8 @@ import { STRIPE_KEY } from "../config/db";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import Swal from "sweetalert2";
+
 
 
 const KEY = STRIPE_KEY;
@@ -186,13 +188,21 @@ const Cart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/checkout/payment`, {
+        const res = await axios.post(`http://localhost:8080/checkout/payment`, {
           tokenId: stripeToken.id,
           amount: 500,
         });
-        navigate("/",{
-          stripeData: res.data,
-          products: cart, });
+        Swal.fire({
+          icon: "success",
+          title: `Your Order Has Been Placed`
+        });
+        setTimeout(() => {
+          navigate("../", { replace: true });
+          // window.location.reload()
+        }, 1000);
+        // navigate("/",{
+        //   stripeData: res.data,
+        //   products: cart, });
       } catch {}
     };
     stripeToken && makeRequest();
@@ -204,12 +214,10 @@ const Cart = () => {
         <Wrapper>
           <Title>YOUR BAG</Title>
           <Top>
-            <TopButton>CONTINUE SHOPPING</TopButton>
+           <Link to='/products'><TopButton>CONTINUE SHOPPING</TopButton></Link> 
             <TopTexts>
-              <TopText>Shopping Bag(2)</TopText>
-              <TopText>Your Wishlist (0)</TopText>
+              <TopText>Shopping Bag({cart.products.length})</TopText>
             </TopTexts>
-            <TopButton type="filled">CHECKOUT NOW</TopButton>
           </Top>
           <Bottom>
           <Info>
@@ -246,25 +254,15 @@ const Cart = () => {
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
+            
+           
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              name="East Store"
+              image="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png"
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
@@ -277,7 +275,6 @@ const Cart = () => {
           </Summary>
         </Bottom>
         </Wrapper>
-        <Footer />
       </Container>
     </div>
   );

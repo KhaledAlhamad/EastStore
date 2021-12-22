@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { sliderItems } from "../../data";
 import { mobile } from "../../responsive";
 import './Carousel.css'
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -84,6 +85,7 @@ const Button = styled.button`
 
 
 const Carousel = () => {
+  const navigate = useNavigate();
     const [slideIndex, setSlideIndex] = useState(0);
     const handleClick = (direction) => {
       if (direction === "left") {
@@ -92,6 +94,10 @@ const Carousel = () => {
         setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
       }
     };
+
+    const shop = () => {
+      navigate("/products", { replace: true });
+    }
 
     return (
         <div>
@@ -107,7 +113,7 @@ const Carousel = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+              <Button onClick={() => shop()}>SHOP NOW</Button>
             </InfoContainer>
           </Slide>
         ))}

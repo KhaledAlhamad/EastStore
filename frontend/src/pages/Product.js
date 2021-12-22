@@ -9,6 +9,8 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch } from "react-redux";
 import { addProduct } from "../reducers/cart/cart";
+import Swal from "sweetalert2";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 const Container = styled.div``;
@@ -127,6 +129,7 @@ const Product = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
 
@@ -154,6 +157,10 @@ const Product = () => {
     dispatch(
       addProduct({ ...product, quantity, color, size })
     );
+    Swal.fire({
+      icon: "success",
+      title: `Product Added to Cart`,
+    });
   };
 
   return (

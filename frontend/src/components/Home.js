@@ -73,14 +73,10 @@ const Home = () => {
   }
   return (
     <div>
-      
-
       <div>
-       <Carousel/>
-        
+       <Carousel/> 
         <Category />
-        <Products/>
-        
+        <Products/> 
       </div>
     </div>
   );

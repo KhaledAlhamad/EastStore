@@ -10,20 +10,46 @@
 
 ## User Stories
 
-- **Signup:** As a user I can sign up in the platform so that I can start playing into competition
-- **Login:** As a user I can login to the platform so that I can log my exit points
+- **Signup:** As a user I can sign up in the website so that I can use the features of the website 
+- **Login:** As a user I can login to the website and be able to use the features of the website 
 - **Logout:** As a user I can logout from the platform so no one else can use it
-- **Add product to cart** As a user I can add product to cart
+- **Add product to cart** As a user I can add product to cart 
 - **remove product from cart** As a user I can remove product from cart
 - **update product quantity** As a user I can update product quantity
-- **Checkout** As a user I can compelete purchase and buy products from the store
+- **Checkout** As a user I can complete purchase and buy products from the store
 - **View Products** As a user I want to see the products in the store
 
+- **Add Products** As an admin I want to be able to add products to the store
+
+- **update Products** As an admin I want to be able to update products in the store
+
+- **delete Products** As an admin I want to be able to delete products from the store
+
+  
+
+# Client / Frontend
+
+## React Router Routes (React App)
+
+| Path                  | Component          | Permissions                | Behavior                                                     |
+| --------------------- | ------------------ | -------------------------- | ------------------------------------------------------------ |
+| `/`                   | SplashPage         | public `<Route>`           | Home page                                                    |
+| `/signup`             | SignupPage         | anon only `<AnonRoute>`    | Signup form, link to login, navigate to homepage after signup |
+| `/login`              | LoginPage          | anon only `<AnonRoute>`    | Login form, link to signup, navigate to homepage after login |
+| `/products`           | ProductsListPage   | public `<Route>`           | Shows all Products                                           |
+| `/products/:category` | ProductsListPage   | public `<Route>`           | Shows all Products based on category                         |
+| `/product/:id`        | ProductDetailsPage | public `<Route>`           | Details of a single product                                  |
+| `/Cart`               | Cart               | user only `<PrivateRoute>` | Shows users shopping cart                                    |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
+|                       |                    |                            |                                                              |
 
 
-
-
-                                      |
+​    
 
 ## Components
 
@@ -176,7 +202,11 @@ Order model
 
 ### Trello
 
-[Link to your trello board](https://trello.com/b/cPFH5Quv) 
+[trello board](https://trello.com/b/cPFH5Quv) 
 
 
+
+### Slides
+
+[Slides](https://docs.google.com/presentation/d/1xSh3vdzGxOESDL1CjfU9KdL69iVPcaKk/edit?usp=sharing&ouid=116316947232788051273&rtpof=true&sd=true)
 

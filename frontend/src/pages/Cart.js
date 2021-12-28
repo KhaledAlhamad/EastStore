@@ -10,16 +10,16 @@ import { css } from "@emotion/react";
 import "font-awesome/css/font-awesome.min.css";
 import { Helmet } from "react-helmet";
 import { Add, Remove } from "@material-ui/icons";
+// import { ClearIcon } from '@mui/icons-material';
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { STRIPE_KEY } from "../config/db";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import Swal from "sweetalert2";
-
-
+import { removeProduct } from "../reducers/cart/cart";
 
 const KEY = STRIPE_KEY;
 
@@ -180,12 +180,15 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onToken = (token) => {
     setStripeToken(token);
   };
 
   useEffect(() => {
+    console.log(cart.total);
+
     const makeRequest = async () => {
       try {
         const res = await axios.post(`http://localhost:8080/checkout/payment`, {
@@ -194,7 +197,7 @@ const Cart = () => {
         });
         Swal.fire({
           icon: "success",
-          title: `Your Order Has Been Placed`
+          title: `Your Order Has Been Placed`,
         });
         setTimeout(() => {
           navigate("../", { replace: true });
@@ -208,72 +211,90 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
 
+  const removeItem = (p) => {
+    dispatch(removeProduct(p._id));
+  };
+
   return (
     <div>
       <Container>
         <Wrapper>
           <Title>YOUR BAG</Title>
           <Top>
-           <Link to='/products'><TopButton>CONTINUE SHOPPING</TopButton></Link> 
+            <Link to="/products">
+              <TopButton>CONTINUE SHOPPING</TopButton>
+            </Link>
             <TopTexts>
               <TopText>Shopping Bag({cart.products.length})</TopText>
             </TopTexts>
           </Top>
           <Bottom>
-          <Info>
-            {cart.products.map((product) => (
-              <Product>
-                <ProductDetail>
-                  <Image src={product.image} />
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> {product.name}
-                    </ProductName>
-                    <ProductId>
-                      <b>ID:</b> {product._id}
-                    </ProductId>
-                    <ProductColor color={product.color} />
-                    <ProductSize>
-                      <b>Size:</b> {product.size}
-                    </ProductSize>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <Add />
-                    <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove />
-                  </ProductAmountContainer>
-                  <ProductPrice>
-                    $ {product.price * product.quantity}
-                  </ProductPrice>
-                </PriceDetail>
-              </Product>
-            ))}
-            <Hr />
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            
-           
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
-            </SummaryItem>
-            <StripeCheckout
-              name="East Store"
-              image="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png"
-              billingAddress
-              shippingAddress
-              description={`Your total is $${cart.total}`}
-              amount={cart.total * 100}
-              token={onToken}
-              stripeKey={KEY}
-            >
-              <Button>CHECKOUT NOW</Button>
-            </StripeCheckout>
-          </Summary>
-        </Bottom>
+            <Info>
+              {cart.products.map((product) => (
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.image} />
+                    <Details>
+                      <ProductName>
+                        <b>Product:</b> {product.name}
+                      </ProductName>
+                      <ProductId>
+                        <b>ID:</b> {product._id}
+                      </ProductId>
+                      <ProductColor color={product.color} />
+                      <ProductSize>
+                        <b>Size:</b> {product.size}
+                      </ProductSize>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Remove />
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => removeItem(product)}
+                      >
+                        X
+                      </button>
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                      $ {product.price * product.quantity}
+                    </ProductPrice>
+                  </PriceDetail>
+                </Product>
+              ))}
+              <Hr />
+            </Info>
+            <Summary>
+              <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+
+              <SummaryItem type="total">
+                <SummaryItemText>Total</SummaryItemText>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              </SummaryItem>
+              {cart.total ? (
+                <StripeCheckout
+                  name="East Store"
+                  image="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png"
+                  billingAddress
+                  shippingAddress
+                  description={`Your total is $${cart.total}`}
+                  amount={cart.total * 100}
+                  token={onToken}
+                  stripeKey={KEY}
+                >
+                  <Button>CHECKOUT NOW</Button>
+                </StripeCheckout>
+              ) : (<Button onClick={() => {Swal.fire({
+                icon: "warning",
+                title: `Cart is empty!`,
+              })}}>CHECKOUT NOW</Button>
+                
+              )}
+            </Summary>
+          </Bottom>
         </Wrapper>
       </Container>
     </div>

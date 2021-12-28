@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Container = styled.div``;
 
@@ -43,6 +44,9 @@ const Catalogue = () => {
   const [filters, setFilters] = useState('')
   const [sort, setSort] = useState('latest')
 
+  useEffect(() => {
+    console.log(cat);
+  }, [])
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({
@@ -56,7 +60,7 @@ const Catalogue = () => {
     <div>
       <Container>
         <Title>{cat}</Title>
-        <FilterContainer>
+        {cat ? <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select name="color" onChange={handleFilters}>
@@ -80,7 +84,7 @@ const Catalogue = () => {
               <Option value="desc">Price (desc)</Option>
             </Select>
           </Filter>
-        </FilterContainer>
+        </FilterContainer> : ""}
         <Products  cat={cat} filters={filters} sort={sort}/>
       </Container>
     </div>

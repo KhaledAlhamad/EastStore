@@ -181,6 +181,8 @@ const Cart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cartItems = localStorage.getItem("cart")
+  
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -188,7 +190,8 @@ const Cart = () => {
 
   useEffect(() => {
     console.log(cart.total);
-
+console.log(cartItems);
+localStorage.setItem('cart',cart)
     const makeRequest = async () => {
       try {
         const res = await axios.post(`http://localhost:8080/checkout/payment`, {

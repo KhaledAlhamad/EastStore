@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../logContext";
 import { useContext } from "react";
 import styled from "styled-components";
-import { Badge } from "@material-ui/core"; 
+import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { mobile } from "../../responsive";
 import { useSelector } from "react-redux";
@@ -73,29 +73,61 @@ const MenuItem = styled.div`
 
 const Header = () => {
   const { user } = useContext(UserContext);
-  const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector((state) => state.cart.quantity);
 
   return (
     <div>
       <Container>
-      <Wrapper>
-        <Left>
-          <Logo><Link to='/'><img src="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png" width="50" alt="running icon transparent running images vector" /></Link></Logo>
-        </Left>
-        <Right>
-        <Link to="/products" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>SHOP</MenuItem></Link>
+        <Wrapper>
+          <Left>
+            <Logo>
+              <Link to="/">
+                <img
+                  src="https://www.freepnglogos.com/uploads/running/running-icon-transparent-running-images-vector-8.png"
+                  width="50"
+                  alt="running icon transparent running images vector"
+                />
+              </Link>
+            </Logo>
+          </Left>
+          <Right>
+            <Link
+              to="/products"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem>SHOP</MenuItem>
+            </Link>
 
-        {/* <Link to="/signup" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>SIGN UP</MenuItem></Link> */}
-         {user ? <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>{user.username}</MenuItem></Link>  :  <Link to="/login" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>LOG IN</MenuItem></Link>
-}
-          <MenuItem>
-            <Badge badgeContent={quantity} color="primary">
-            <Link to="/cart" style={{ textDecoration: 'none' , color: 'black'}}> <ShoppingCartOutlined /></Link>
-            </Badge>
-          </MenuItem>
-        </Right>
-      </Wrapper>
-    </Container>
+            {/* <Link to="/signup" style={{ textDecoration: 'none' , color: 'black'}}><MenuItem>SIGN UP</MenuItem></Link> */}
+            {user ? (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <MenuItem>{user.username}</MenuItem>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <MenuItem>LOG IN</MenuItem>
+              </Link>
+            )}
+            <MenuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <Link
+                  to="/cart"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  {" "}
+                  <ShoppingCartOutlined />
+                </Link>
+              </Badge>
+            </MenuItem>
+          </Right>
+        </Wrapper>
+      </Container>
     </div>
   );
 };

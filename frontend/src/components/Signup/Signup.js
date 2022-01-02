@@ -58,47 +58,6 @@ const Signup = () => {
   };
   return (
     <div>
-      {/* <h3>Sign up</h3>
-
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          type="username"
-          className="form-control"
-          placeholder="Enter Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <label>Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="btn btn-primary btn-block"
-        onClick={() => signUser()}
-      >
-        Submit
-      </button> */}
       {loggedUser ? navigate("../", { replace: true }) : <div className="Container">
         <Wrapper>
           <h1 className="Title">CREATE AN ACCOUNT</h1>

@@ -7,10 +7,14 @@ import { mobile } from "../responsive";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/cart/cart";
 import Swal from "sweetalert2";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { UserContext } from "../components/logContext";
+import { useContext } from "react";
+
+
 
 
 const Container = styled.div``;
@@ -130,15 +134,25 @@ const Product = () => {
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+  const token = localStorage.getItem("token");
+  const uid = localStorage.getItem("uid");
+  const AuthStr = "Bearer ".concat(token);
+  const cart = localStorage.getItem("cart")
+  const products = useSelector((state) => state.cart);
+
 
 
 
   useEffect(() => {
+    console.log(AuthStr);
+    console.log(uid);
     const getProduct = async () => {
       try {
         const res = await axios.get(`http://localhost:8080/product/${id}`)
         setProduct(res.data[0]);
         console.log(res.data[0]);
+        console.log(user);
       } catch {}
     };
     getProduct();
@@ -154,14 +168,76 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    dispatch(
-      addProduct({ ...product, quantity, color, size })
-    );
-    Swal.fire({
-      icon: "success",
-      title: `Product Added to Cart`,
-    });
+    if(user){
+      dispatch(
+        addProduct({ ...product, quantity, color, size })
+      );
+      // localStorage.setItem("cart", [...products,product]);
+      try {
+        axios.post('http://localhost:8080/cart', { userId: uid,
+        products: [{productId: product._id}] },
+        {
+          headers: { token: AuthStr },
+        }).then((res) => {
+            console.log(res)
+        })
+      } catch {}
+      Swal.fire({
+        icon: "success",
+        title: `Product Added to Cart`,
+      });
+    }
+    else{
+      Swal.fire({
+        icon: "warning",
+        title: `Please login first`,
+      });
+    setTimeout(() => {
+        navigate("/login", { replace: true });
+        // window.location.reload()
+      }, 2000);
+      
+    }
+   
   };
+
+  const updateCart = () => {
+    if(user){
+      dispatch(
+        addProduct({ ...product, quantity, color, size })
+      );
+      try {
+        axios.put(`http://localhost:8080/cart/${uid}`, 
+        {
+        products: {product}
+       },
+        {
+          headers: { token: AuthStr },
+        }).then((res) => {
+            console.log(res)
+        })
+
+        // const res = await axios.post(`http://localhost:8080/cart/`)
+        // setProduct(res.data[0]);
+        // console.log(res.data[0]);
+        // console.log(user);
+      } catch {}
+      Swal.fire({
+        icon: "success",
+        title: `Product Added to Cart`,
+      });
+    }
+    else{
+      Swal.fire({
+        icon: "warning",
+        title: `Please login first`,
+      });
+    setTimeout(() => {
+        navigate("/login", { replace: true });
+        // window.location.reload()
+      }, 2000);
+    }
+  }
 
   return (
     <div>
@@ -196,7 +272,7 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button> 
           </AddContainer>
         </InfoContainer>
       </Wrapper>

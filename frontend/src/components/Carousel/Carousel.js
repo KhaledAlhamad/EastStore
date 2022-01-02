@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../../data";
 import { mobile } from "../../responsive";
-import './Carousel.css'
-import { useNavigate } from 'react-router-dom';
+import "./Carousel.css";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -50,7 +50,6 @@ const Slide = styled.div`
   background-color: #${(props) => props.bg};
 `;
 
-
 const ImgContainer = styled.div`
   height: 100%;
   flex: 1;
@@ -83,47 +82,48 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-
 const Carousel = () => {
   const navigate = useNavigate();
-    const [slideIndex, setSlideIndex] = useState(0);
-    const handleClick = (direction) => {
-      if (direction === "left") {
-        setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
-      } else {
-        setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
-      }
-    };
-
-    const shop = () => {
-      navigate("/products", { replace: true });
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
     }
+  };
 
-    return (
-        <div>
-            <Container>
-            <Arrow direction="left" onClick={() => handleClick("left")}>        <ArrowLeftOutlined />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id}>
-            <ImgContainer>
-              <Image src={item.img} />
-            </ImgContainer>
-            <InfoContainer>
-              <Title>{item.title}</Title>
-              <Desc>{item.desc}</Desc>
-              <Button onClick={() => shop()}>SHOP NOW</Button>
-            </InfoContainer>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowRightOutlined />
-      </Arrow>
-    </Container>
-        </div>
-    )
-}
+  const shop = () => {
+    navigate("/products", { replace: true });
+  };
 
-export default Carousel
+  return (
+    <div>
+      <Container>
+        <Arrow direction="left" onClick={() => handleClick("left")}>
+          {" "}
+          <ArrowLeftOutlined />
+        </Arrow>
+        <Wrapper slideIndex={slideIndex}>
+          {sliderItems.map((item) => (
+            <Slide bg={item.bg} key={item.id}>
+              <ImgContainer>
+                <Image src={item.img} />
+              </ImgContainer>
+              <InfoContainer>
+                <Title>{item.title}</Title>
+                <Desc>{item.desc}</Desc>
+                <Button onClick={() => shop()}>SHOP NOW</Button>
+              </InfoContainer>
+            </Slide>
+          ))}
+        </Wrapper>
+        <Arrow direction="right" onClick={() => handleClick("right")}>
+          <ArrowRightOutlined />
+        </Arrow>
+      </Container>
+    </div>
+  );
+};
+
+export default Carousel;

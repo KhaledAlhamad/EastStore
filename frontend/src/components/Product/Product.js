@@ -6,6 +6,7 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ListItemSecondaryAction } from "@material-ui/core";
 
 const Info = styled.div`
   opacity: 0;
@@ -66,8 +67,9 @@ const Product = ({ item }) => {
     <div>
        <Container>
       <Image src={item.image} />
+      
       <Info>
-        
+      <h1>${item.price}</h1>
         <Icon>
           <Link to={`/product/${item._id}`}>
           <SearchOutlined />

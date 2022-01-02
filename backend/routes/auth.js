@@ -13,6 +13,7 @@ router.post("/signup", async (req, res) => {
     try {
       const savedUser = await newUser.save();
       res.status(201).json(savedUser);
+      console.log(savedUser);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -41,7 +42,7 @@ router.post("/signup", async (req, res) => {
         const { password, ...rest } = user._doc;  
         // res.status(200).json({Token});
         res.status(200).json({...rest, token});
-        // console.log(user);
+        console.log(user);
 
     }catch(err){
         res.status(500).json(err);

@@ -27,7 +27,7 @@ const Signup = () => {
     console.log(password);
     // e.preventDefault()
     axios
-      .post("/auth/signup", {
+      .post("http://localhost:8080/auth/signup", {
         username: username,
         email: email,
         password: password,

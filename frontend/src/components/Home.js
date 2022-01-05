@@ -34,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     // console.log(`username`, token);
-    axios.get("/product").then((res) => {
+    axios.get("http://localhost:8080/product").then((res) => {
       setProducts(res.data);
       setLoading(false);
       console.log(res.data);
@@ -46,7 +46,7 @@ const Home = () => {
         console.log(product)
         // navigate("/cart", {product:product});
         // navigate(`/cart`,  {state: product} )
-        axios.post('/cart', {
+        axios.post('http://localhost:8080/cart', {
             userId: uid,
             product: [product]
         }).then((res) => {

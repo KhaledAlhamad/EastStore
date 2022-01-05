@@ -33,7 +33,7 @@ const Cart = () => {
     // //   console.log(user.id);
     user
       ? axios
-          .get(`/cart/${uid}`, {
+          .get(`http://localhost:8080/cart/${uid}`, {
             headers: { token: AuthStr },
           })
           .then((res) => {
@@ -50,7 +50,7 @@ const Cart = () => {
     console.log(uid);
 
     axios
-      .delete(`/cart`, {
+      .delete(`http://localhost:8080/cart`, {
         userId: uid,
         productId: e._id,
       })

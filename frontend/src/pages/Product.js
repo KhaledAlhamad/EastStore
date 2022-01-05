@@ -149,7 +149,7 @@ const Product = () => {
     console.log(uid);
     const getProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/product/${id}`)
+        const res = await axios.get(`/product/${id}`)
         setProduct(res.data[0]);
         console.log(res.data[0]);
         console.log(user);
@@ -174,7 +174,7 @@ const Product = () => {
       );
       // localStorage.setItem("cart", [...products,product]);
       try {
-        axios.post('http://localhost:8080/cart', { userId: uid,
+        axios.post('/cart', { userId: uid,
         products: [{productId: product._id}] },
         {
           headers: { token: AuthStr },
@@ -207,7 +207,7 @@ const Product = () => {
         addProduct({ ...product, quantity, color, size })
       );
       try {
-        axios.put(`http://localhost:8080/cart/${uid}`, 
+        axios.put(`/cart/${uid}`, 
         {
         products: {product}
        },

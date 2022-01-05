@@ -194,7 +194,7 @@ console.log(cartItems);
 localStorage.setItem('cart',cart)
     const makeRequest = async () => {
       try {
-        const res = await axios.post(`http://localhost:8080/checkout/payment`, {
+        const res = await axios.post(`/checkout/payment`, {
           tokenId: stripeToken.id,
           amount: 500,
         });

@@ -67,7 +67,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8080/auth/login", {
+      .post("/auth/login", {
         username: username,
         password: password,
       })

@@ -32,8 +32,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:8080/product/?category=${cat}`
-            : "http://localhost:8080/product"
+            ? `/product/?category=${cat}`
+            : "/product"
         );
         
         setLoading(false)
